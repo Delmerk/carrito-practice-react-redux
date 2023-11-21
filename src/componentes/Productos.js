@@ -47,7 +47,7 @@ const Producto = styled.div`
 
 const Boton = styled.button`
 	border: none;
-	background: #1c85e8;
+	background: #086e11;
 	color: #fff;
 	font-size: 12px;
 	font-family: "Open Sans", sans-serif;
@@ -60,7 +60,7 @@ const Boton = styled.button`
 	transition: 0.3s ease all;
 
 	&:hover {
-		background: #1c6ab9;
+		background: #129606;
 	}
 `;
 

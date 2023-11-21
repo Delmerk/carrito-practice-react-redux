@@ -56,7 +56,7 @@ const Contenedor = styled.div`
 const Menu = styled.nav`
 	width: 100%;
 	text-align: center;
-	background: #092c4c;
+	background: #144c09;
 	grid-column: span 2;
 	border-radius: 3px;
 
@@ -67,7 +67,7 @@ const Menu = styled.nav`
 	}
 
 	a:hover {
-		background: #1d85e8;
+		background: #177a03;
 		text-decoration: none;
 	}
 `;

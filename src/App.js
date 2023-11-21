@@ -7,92 +7,16 @@ import Tienda from "./componentes/Tienda";
 import Error404 from "./componentes/Error404";
 import Carrito from "./componentes/Carrito";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore } from "redux"; //una funtion
 import reducer from "./reducers/tiendaReducer";
 
 function App() {
-	// const App = () => {
-	// Sin REDUX:
-	/*const productos = [
-		{
-			id: 1,
-			name: "Chocolate",
-			price: 3000,
-		},
-		{
-			id: 2,
-			name: "Leche",
-			price: 5000,
-		},
-		{
-			id: 3,
-			name: "Laptop",
-			price: 3000000,
-		},
-		{
-			id: 4,
-			name: "Celular",
-			price: 1000000,
-		},
-	];
-
-	const [carrito, setCarrito] = useState([]);
-
-	const agregarProductoAlCarrito = (idProductoAAgregar, nombre) => {
-		// Si el carrito no tiene elementos agragamos 1
-		if (carrito.length === 0) {
-			setCarrito([{ id: idProductoAAgregar, name: nombre, cantidad: 1 }]);
-		} else {
-			// Revizar que el carrito no tenga ya el producto que queremos agregar
-			// Si ya tiene el producto entonces queremos actualizar el valor
-			// Si no tiene el producto entonces lo agregamos
-
-			// Para poder editar el carrito-arreglo tenemos que clonarlo
-			const nuevoCarrito = [...carrito]; //lo clonamos
-
-			// Comprobar si el carrito ya tiene el ID del producto a agregar
-			// O comprobar si el elemento que queremos agregar yaEstaEnCarrito o no
-			const yaEstaEnCarrito = //Guarda el valor de verdadero o falso si el product ya se encuentra en elcarrito
-				// filter recorre cada uno de elementos del arreglo-carrito
-				nuevoCarrito.filter((productoDeCarrito) => {
-					return productoDeCarrito.id === idProductoAAgregar;
-				}).length > 0;
-
-			// Si ya tiene el producto, lo podemos-tenemos que actualizar
-			if (yaEstaEnCarrito) {
-				// Debos saber cual de los elementos del arreglo, de nuestro carrito es
-				// Para ello tenemos que buscarlo, obtener su posición en el arreglo.
-				// Y en base a su posición ya actualizamos el valor.
-				// forEach ejecuta una function por cada element
-				nuevoCarrito.forEach((productoDeCarrito, index) => {
-					if (productoDeCarrito.id === idProductoAAgregar) {
-						const cantidad = nuevoCarrito[index].cantidad;
-						nuevoCarrito[index] = {
-							id: idProductoAAgregar,
-							name: nombre,
-							cantidad: cantidad + 1,
-						};
-					}
-				});
-			} else {
-				//De otra forma agregamos el producto al carrito
-				nuevoCarrito.push({
-					id: idProductoAAgregar,
-					name: nombre,
-					cantidad: 1,
-				});
-			}
-
-			// Por ultimo actualizamos el carrito
-			setCarrito(nuevoCarrito);
-		}
-	};*/
-	// Sin REDUX end.
-
+	// reducer es una funtion encargada de manipular-editar el estado.
 	const store = createStore(reducer);
 	// console.log(store.getState());
 
 	return (
+		// store es nuestro estado global con redux
 		<Provider store={store}>
 			<Contenedor>
 				<Menu>

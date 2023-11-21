@@ -1,27 +1,29 @@
 const estadoInicial = {
 	productos: [
-		{id: 1, nombre: 'Producto 1'},
-		{id: 2, nombre: 'Producto 2'},
-		{id: 3, nombre: 'Producto 3'},
-		{id: 4, nombre: 'Producto 4'}
+		{ id: 1, nombre: "Producto 1" },
+		{ id: 2, nombre: "Producto 2" },
+		{ id: 3, nombre: "Producto 3" },
+		{ id: 4, nombre: "Producto 4" },
 	],
 
-	carrito: []
-}
+	carrito: [],
+};
 
-// Reducer es una funcion que se va a encargar
-// de administrar el estado global de nuestra app.
+// Reducer es una funcion que se va a encargar de administrar el estado global de nuestra app.
+// reducer siempre debe devolver el nuevo estado
 const reducer = (estado = estadoInicial, accion) => {
-	switch(accion.type){
-		case 'AGREGAR_PRODUCTO_AL_CARRITO':
-			const {nombre, idProductoAAgregar} = accion;
+	// accion.type es lo que queremos ejecutar para modificar nuestro estado.
+	switch (accion.type) {
+		case "AGREGAR_PRODUCTO_AL_CARRITO":
+			// destructuración de accion para extraer el nombre y el idProductoAAgregar
+			const { nombre, idProductoAAgregar } = accion;
 
 			// Si el carrito no tiene elementos entonces agregamos uno.
-			if(estado.carrito.length === 0){
+			if (estado.carrito.length === 0) {
 				return {
 					...estado,
-					carrito: [{id: idProductoAAgregar, nombre: nombre, cantidad: 1}]
-				}
+					carrito: [{ id: idProductoAAgregar, nombre: nombre, cantidad: 1 }],
+				};
 			} else {
 				// De otra foma tenemos que revisar que el carrito no tenga ya el producto que queremos agregar.
 				// Si ya lo tiene entonces queremos actualizar su valor.
@@ -31,43 +33,42 @@ const reducer = (estado = estadoInicial, accion) => {
 				const nuevoCarrito = [...estado.carrito];
 
 				// Comprobamos si el carrito ya tiene el ID del producto a agregar.
-				const yaEstaEnCarrito = nuevoCarrito.filter((productoDeCarrito) => {
-					return productoDeCarrito.id === idProductoAAgregar
-				}).length > 0;
+				const yaEstaEnCarrito =
+					nuevoCarrito.filter((productoDeCarrito) => {
+						return productoDeCarrito.id === idProductoAAgregar;
+					}).length > 0;
 
 				// Si ya tiene el producto entonces lo tenemos que actualizar.
-				if(yaEstaEnCarrito){
+				if (yaEstaEnCarrito) {
 					// Para ello tenemos que buscarlo, obtener su posicion en el arreglo.
 					// Y en base a su posicion ya actualizamos el valor.
 					nuevoCarrito.forEach((productoDeCarrito, index) => {
-						if(productoDeCarrito.id === idProductoAAgregar){
+						if (productoDeCarrito.id === idProductoAAgregar) {
 							const cantidad = nuevoCarrito[index].cantidad;
 							nuevoCarrito[index] = {
-								id: idProductoAAgregar, 
-								nombre: nombre, 
-								cantidad: cantidad + 1
-							}
+								id: idProductoAAgregar,
+								nombre: nombre,
+								cantidad: cantidad + 1,
+							};
 						}
 					});
-				// De otra forma entonces agregamos el producto al arreglo.
+					// De otra forma entonces agregamos el producto al arreglo.
 				} else {
-					nuevoCarrito.push(
-						{
-							id: idProductoAAgregar,
-							nombre: nombre,
-							cantidad: 1
-						}
-					);
+					nuevoCarrito.push({
+						id: idProductoAAgregar,
+						nombre: nombre,
+						cantidad: 1,
+					});
 				}
 
 				return {
 					...estado,
-					carrito: nuevoCarrito
-				}
+					carrito: nuevoCarrito,
+				};
 			}
 		default:
 			return estado;
 	}
-}
+};
 
 export default reducer;

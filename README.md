@@ -1,3 +1,5 @@
+Simple exercice, redux. The state changes when reloading the page. I don't like that.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
